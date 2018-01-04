@@ -1,0 +1,28 @@
+buildscript {
+    ext.kotlin_version = '1.1.50'
+
+    repositories {
+        mavenLocal()
+        maven { url "http://dl.bintray.com/kboom/scherule" }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.scherule:scherule-buildtools:1.0.0"
+        classpath "com.bmuschko:gradle-docker-plugin:3.0.8"
+    }
+
+}
+
+repositories {
+    mavenLocal()
+    maven { url "http://dl.bintray.com/kboom/scherule" }
+    mavenCentral()
+}
+
+apply plugin: 'com.scherule.project'
+apply from: "$projectDir/gradle/container.gradle"
+
+scheruleProject {
+
+}
