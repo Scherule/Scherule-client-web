@@ -22,11 +22,10 @@ task buildClient(type: NpmTask, dependsOn: "npmInstall") {
     args = ['run', 'build:prod']
 }
 
-task webjar(type: Copy, dependsOn: ["buildClient"]) {
-    from(fileTree("dist")) {
-        into "META-INF/resources"
-    }
+task pullClient(type: Copy) {
+    from fileTree("dist")
+    into "${buildDir}/classes/META-INF/resources"
 }
 
 clean.finalizedBy cleanClient
-build.finalizedBy webjar
+jar.dependsOn pullClient

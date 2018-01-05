@@ -10,13 +10,13 @@ eureka:
     leaseExpirationDurationInSeconds: 20
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_URL:http://localhost:9990/eureka/}
+      defaultZone: ${EUREKA_URL:http://localhost:10000/eureka/}
 
 services:
   gateway:
     baseUrl: ${API_GATEWAY_URL:http://localhost:9999}
   auth:
-    baseUrl: ${services.gateway.baseUrl}/auth
+    baseUrl: ${services.gateway.baseUrl}
 
 security:
   oauth2:
