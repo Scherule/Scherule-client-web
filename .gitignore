@@ -1,6 +1,5 @@
 *.iml
 node_modules
-.idea
-target
-dist
-.awcache
+/dist/
+/.awcache
+/build/
