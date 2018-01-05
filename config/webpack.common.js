@@ -30,7 +30,7 @@ const ngcWebpack = require('ngc-webpack');
 const HMR = helpers.hasProcessFlag('hot');
 const AOT = process.env.BUILD_AOT || helpers.hasNpmFlag('aot');
 const METADATA = {
-  title: 'TimezonesApp',
+  title: 'Scherule',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer(),
   HMR: HMR
@@ -62,9 +62,9 @@ module.exports = function (options) {
      */
     entry: {
 
-      'polyfills': './src/polyfills.browser.ts',
-      'main':      AOT ? './src/main.browser.aot.ts' :
-                  './src/main.browser.ts'
+      'polyfills': './src/client/polyfills.browser.ts',
+      'main':      AOT ? './src/client/main.browser.aot.ts' :
+                  './src/client/main.browser.ts'
 
     },
 
@@ -85,7 +85,7 @@ module.exports = function (options) {
       /**
        * An array of directory names to be resolved to the current directory
        */
-      modules: [helpers.root('src'), helpers.root('node_modules')],
+      modules: [helpers.root('src/client'), helpers.root('node_modules')],
 
     },
 
@@ -183,7 +183,7 @@ module.exports = function (options) {
         {
           test: /\.html$/,
           use: 'raw-loader',
-          exclude: [helpers.root('src/index.html')]
+          exclude: [helpers.root('src/client/index.html')]
         },
 
         /**
@@ -285,8 +285,8 @@ module.exports = function (options) {
        * See: https://www.npmjs.com/package/copy-webpack-plugin
        */
       new CopyWebpackPlugin([
-        { from: 'src/assets', to: 'assets' },
-        { from: 'src/meta'}
+        { from: 'src/client/assets', to: 'assets' },
+        { from: 'src/client/meta'}
       ],
         isProd ? { ignore: [ 'mock-data/**/*' ] } : undefined
       ),
@@ -319,7 +319,7 @@ module.exports = function (options) {
       * See: https://github.com/ampedandwired/html-webpack-plugin
       */
       new HtmlWebpackPlugin({
-        template: 'src/index.html',
+        template: 'src/client/index.html',
         title: METADATA.title,
         chunksSortMode: 'dependency',
         metadata: METADATA,

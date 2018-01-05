@@ -4,12 +4,21 @@ buildscript {
     repositories {
         mavenLocal()
         maven { url "http://dl.bintray.com/kboom/scherule" }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
         jcenter()
     }
 
     dependencies {
         classpath "com.scherule:scherule-buildtools:1.0.0"
+        classpath "org.junit.platform:junit-platform-gradle-plugin:$junit_platform_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
         classpath "com.bmuschko:gradle-docker-plugin:3.0.8"
+        classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
     }
 
 }
@@ -21,7 +30,10 @@ repositories {
 }
 
 apply plugin: 'com.scherule.project'
+apply from: "$projectDir/gradle/sourcesets.gradle"
+apply from: "$projectDir/gradle/boot.gradle"
 apply from: "$projectDir/gradle/container.gradle"
+apply from: "$projectDir/gradle/webjar.gradle"
 
 scheruleProject {
 

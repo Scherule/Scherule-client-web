@@ -69,7 +69,7 @@ module.exports = function (env) {
        *
        * See: http://webpack.github.io/docs/configuration.html#output-path
        */
-      path: helpers.root('target', 'classes', 'META-INF', 'resources', 'webjars', packageJSON.name, packageJSON.version),
+      path: helpers.root('dist', packageJSON.name, packageJSON.version),
 
       /**
        * Specifies the name of each output file on disk.
